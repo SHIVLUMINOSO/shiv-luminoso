@@ -1,6 +1,6 @@
 /* Shiv Luminoso · Bhaktamar Stotra — gold paper, red lettering (#8d1212) */
 :root{--red:#8d1212;--deep:#6a0c0c;--ivory:#fff7d6;--card:rgba(255,247,205,.62);--line:rgba(141,18,18,.45);--soft:rgba(141,18,18,.28);
-  --serif:'Cormorant Garamond',Georgia,'Noto Serif Devanagari',serif;--deva:'Noto Serif Devanagari','Cormorant Garamond',serif}
+  --serif:'Cormorant Garamond',Georgia,'Noto Serif Devanagari','Noto Serif Gujarati',serif;--deva:'Noto Serif Devanagari','Cormorant Garamond',serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{font-size:calc(100% * var(--scale,1));-webkit-text-size-adjust:100%}
 body{margin:0;min-height:100vh;background:linear-gradient(180deg,#f6e596 0%,#ecd075 58%,#e6c765 100%) fixed;color:var(--red);font-family:var(--serif);font-weight:500;line-height:1.4}
@@ -12,7 +12,7 @@ h1:focus,main:focus{outline:none}
 .app{position:relative;padding-top:env(safe-area-inset-top);display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:480px;margin:0 auto}
 .app::after{content:"";position:absolute;inset:10px;border:1px solid rgba(141,18,18,.5);pointer-events:none}
 .scroll{position:relative;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:14px 26px 18px;display:flex;flex-direction:column;gap:14px}
-.deva,.sa,.is-hi .body,.is-hi .ttl{font-family:var(--deva)}
+.deva,.sa,.is-hi .body,.is-gu .body,.is-hi .ttl,.is-gu .ttl{font-family:var(--deva)}
 .hide-sa .sa-card{display:none}
 
 /* top bars */
@@ -48,7 +48,7 @@ h1{font-size:2rem;line-height:1.12}
 .pron{border-top:1px solid var(--soft);padding-top:8px;font:italic 500 1.0625rem/1.5 var(--serif);text-align:center;color:var(--deep)}
 .body{font-size:1.1875rem;line-height:1.5;margin:0}
 .body+.body{margin-top:.6em}
-.is-hi .body{line-height:1.75}
+.is-hi .body,.is-gu .body{line-height:1.75}
 .spread{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .tag{font:700 .75rem/1 var(--serif);letter-spacing:.06em;border:1px solid var(--red);border-radius:10px;padding:5px 8px}
 
@@ -57,7 +57,7 @@ h1{font-size:2rem;line-height:1.12}
 .hero h1{font-size:2.625rem;line-height:1.05}
 .hero .hd{font:600 1.5625rem/1.5 var(--deva);margin-top:2px}
 .hero p{font:italic 500 1.1875rem/1.3 var(--serif);color:var(--deep);margin:2px 0 0}
-.is-hi .hero p{font-family:var(--deva);font-style:normal;line-height:1.6;font-size:1.0625rem}
+.is-hi .hero p,.is-gu .hero p{font-family:var(--deva);font-style:normal;line-height:1.6;font-size:1.0625rem}
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:84px;padding:8px 4px;text-align:center;text-decoration:none;color:var(--red);background:var(--card);border:1px solid var(--line);border-radius:14px;font:700 1rem/1.15 var(--serif)}
 .mem{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--red)}
@@ -74,7 +74,7 @@ h1{font-size:2rem;line-height:1.12}
 .vrow .tx{flex:1;min-width:0}
 .vrow .sa1{display:block;font:600 1.0625rem/1.5 var(--deva);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vrow .tt{display:block;font:italic 500 1rem/1.25 var(--serif);color:var(--deep)}
-.is-hi .vrow .tt{font-family:var(--deva);font-style:normal;font-size:.9375rem}
+.is-hi .vrow .tt,.is-gu .vrow .tt{font-family:var(--deva);font-style:normal;font-size:.9375rem}
 .empty{padding:20px 4px;font:italic 500 1.125rem/1.4 var(--serif);color:var(--deep)}
 
 /* reader */
@@ -124,7 +124,7 @@ h1{font-size:2rem;line-height:1.12}
 .memtop h1{font-size:2rem}
 .memtop .dates{font:italic 500 1.125rem/1.3 var(--serif);color:var(--deep)}
 .memtop .big{font:500 1.1875rem/1.45 var(--serif);padding:0 6px}
-.is-hi .memtop .big,.is-hi .memtop .dates{font-family:var(--deva);font-style:normal;line-height:1.7}
+.is-hi .memtop .big,.is-gu .memtop .big,.is-hi .memtop .dates,.is-gu .memtop .dates{font-family:var(--deva);font-style:normal;line-height:1.7}
 .story h2{font-size:1.375rem;margin-bottom:2px}
 
 /* language */
@@ -136,7 +136,7 @@ h1{font-size:2rem;line-height:1.12}
 .sw{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;font:600 1.125rem/1.2 var(--serif);cursor:pointer}
 .sw+.sw{border-top:1px solid var(--soft)}
 .sw input{width:22px;height:22px;accent-color:var(--red)}
-.is-hi .sw,.is-hi .opt .on2{font-family:var(--deva)}
+.is-hi .sw,.is-gu .sw,.is-hi .opt .on2,.is-gu .opt .on2{font-family:var(--deva)}
 fieldset{border:0;margin:0;padding:0;min-width:0}
 legend{padding:0}
 
@@ -145,9 +145,9 @@ legend{padding:0}
 .bookrow img{width:112px;height:auto;border-radius:6px;border:1px solid var(--red);flex:none}
 .bookrow b{display:block;font:600 1.25rem/1.2 var(--serif)}
 .bookrow i{display:block;font:italic 500 1.0625rem/1.3 var(--serif);color:var(--deep);margin-top:4px}
-.is-hi .bookrow b,.is-hi .bookrow i{font-family:var(--deva);font-style:normal}
+.is-hi .bookrow b,.is-gu .bookrow b,.is-hi .bookrow i,.is-gu .bookrow i{font-family:var(--deva);font-style:normal}
 .small{font:500 1.0625rem/1.45 var(--serif);margin:0}
-.is-hi .small,.is-hi .note,.is-hi .cstat{font-family:var(--deva);font-style:normal;line-height:1.7}
+.is-hi .small,.is-gu .small,.is-hi .note,.is-gu .note,.is-hi .cstat,.is-gu .cstat{font-family:var(--deva);font-style:normal;line-height:1.7}
 
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--red);color:var(--ivory);padding:10px 18px;border-radius:22px;font:700 1rem/1 var(--serif);opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
@@ -157,13 +157,16 @@ legend{padding:0}
 
 /* Devanagari: no letter-spacing, slightly larger small-caps labels */
 .dv{letter-spacing:0;text-transform:none;font-family:var(--deva);font-size:1.1em;font-weight:600}
-.is-hi .lbl,.is-hi .nav a,.is-hi .tag,.is-hi .sep{letter-spacing:0;text-transform:none}
-.is-hi .lbl{font-size:.9375rem;font-family:var(--deva)}
-.is-hi .top .lbl{font-size:.9375rem}
-.is-hi .nav a{font-family:var(--deva);font-size:.9375rem}
-.is-hi .pill,.is-hi .btn,.is-hi .tile{font-family:var(--deva)}
+.is-hi .lbl,.is-gu .lbl,.is-hi .nav a,.is-gu .nav a,.is-hi .tag,.is-gu .tag,.is-hi .sep,.is-gu .sep{letter-spacing:0;text-transform:none}
+.is-hi .lbl,.is-gu .lbl{font-size:.9375rem;font-family:var(--deva)}
+.is-hi .top .lbl,.is-gu .top .lbl{font-size:.9375rem}
+.is-hi .nav a,.is-gu .nav a{font-family:var(--deva);font-size:.9375rem}
+.is-hi .pill,.is-gu .pill,.is-hi .btn,.is-gu .btn,.is-hi .tile,.is-gu .tile{font-family:var(--deva)}
 
-.lbl.lat,.is-hi .lbl.lat{font:700 .75rem/1.2 var(--serif);letter-spacing:.24em;text-transform:uppercase}
+.lbl.lat,.is-hi .lbl.lat,.is-gu .lbl.lat{font:700 .75rem/1.2 var(--serif);letter-spacing:.24em;text-transform:uppercase}
 
 /* pictures: no drag, no iOS long-press save menu */
 img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+
+/* Gujarati: reuse every Hindi rule, with the Gujarati font in place of the Devanagari one */
+.is-gu{--deva:'Noto Serif Gujarati','Noto Serif Devanagari','Cormorant Garamond',serif}

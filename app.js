@@ -3,16 +3,18 @@
 (function () {
   'use strict';
   var D = window.LUZ_DATA, UI = window.LUZ_UI;
-  var LANGS = ['en', 'hi', 'es'];                       // live languages
-  var SOON = [{ code: 'it', name: 'Italiano', eng: 'Italian' }, { code: 'pt', name: 'Português', eng: 'Portuguese' }];
+  var LANGS = ['en', 'hi', 'gu', 'es', 'pt', 'it'];     // live languages (Hindi, Gujarati, Spanish, Portuguese and Italian are drafts until a native speaker has checked them)
+  var SOON = [{ code: 'ta', name: 'தமிழ்', eng: 'Tamil' }];
   var IMG = window.LUZ_IMG_BASE || D.imgBase || '';   // folder (or web address) that holds img/, thumb/, nani.jpg, cover.jpg
-  var U = function (p) { var m = window.LUZ_IMAGES; return (m && m[p]) || (IMG + p); };   // the single-file build embeds the pictures in window.LUZ_IMAGES
   var U = function (p) { var m = window.LUZ_IMAGES; return (m && m[p]) || (IMG + p); };   // the single-file build embeds the pictures in window.LUZ_IMAGES
   var $app = document.getElementById('app'), $toast = document.getElementById('toast');
 
   /* ---------- tiny helpers ---------- */
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var pad = function (n) { return String(n).padStart(2, '0'); };
+  // Gujarati script for the Sanskrit: Unicode keeps Devanagari and Gujarati letters in the same order, so each letter moves exactly 0x180 places (the danda marks stay as they are)
+  var toGu = function (s) { return String(s).replace(/[\u0900-\u097F]/g, function (c) { var n = c.charCodeAt(0); return (n === 0x964 || n === 0x965) ? c : String.fromCharCode(n + 0x180); }); };
+  var sc = function (s) { return S.lang === 'gu' ? toGu(s) : s; };
   var toDev = function (n) { return String(n).replace(/\d/g, function (d) { return '०१२३४५६७८९'[d]; }); };
   var norm = function (s) { return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/-/g, '').toLowerCase(); };
   var mem = {};
@@ -30,7 +32,7 @@
     if (vars) for (var v in vars) s = s.replace('{' + v + '}', vars[v]);
     return s;
   };
-  var lines = function (a) { return a.map(esc).join('<br>'); };
+  var lines = function (a) { return a.map(function (x) { return esc(sc(x)); }).join('<br>'); };
   var verse = function (n) { return D.verses[n - 1]; };
   var clampN = function (x) { x = parseInt(x, 10); return x >= 1 && x <= 48 ? x : 1; };
   var todayN = function () { var d = new Date(); return Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5) % 48 + 1; };
@@ -72,7 +74,7 @@
   function vHome() {
     var n = todayN(), v = verse(n);
     return { title: 'Shiv Luminoso · Bhaktamar Stotra', nav: 'home', top: topHome(), html:
-      '<div class="hero"><h1>Bhaktamar Stotra</h1><div class="hd" lang="sa">भक्तामर स्तोत्र</div><p>' + esc(t('tagline')) + '</p></div>' +
+      '<div class="hero"><h1>Bhaktamar Stotra</h1><div class="hd" lang="sa">' + esc(sc('भक्तामर स्तोत्र')) + '</div><p>' + esc(t('tagline')) + '</p></div>' +
       '<section class="card" aria-label="' + esc(t('today')) + '"><div class="lbl">' + esc(t('today')) + ' · ' + pad(n) + '</div><div class="sa" lang="sa">' + lines(v.sa) + '</div>' +
       '<a class="btn" href="#verse-' + n + '">' + esc(t('readVerse', { n: n })) + '</a></section>' +
       '<div class="tiles"><a class="tile" href="#verses">' + ic('verses', 26) + '<span>' + esc(t('cardVerses')) + '</span></a>' +
@@ -84,7 +86,7 @@
   var index = null;
   function buildIndex() {
     index = D.verses.map(function (v) {
-      return norm([v.n].concat(['en', 'hi', 'es'].map(function (l) { return v.title[l] + ' ' + v.meaning[l]; }), v.sa, v.pron).join(' '));
+      return norm([v.n].concat(LANGS.map(function (l) { return (v.title[l] || '') + ' ' + (v.meaning[l] || ''); }), v.sa, v.pron).join(' '));
     });
   }
   function rows(q) {
@@ -93,7 +95,7 @@
     D.verses.forEach(function (v, i) {
       var ok = !nq || (/^\d+$/.test(nq) ? String(v.n).indexOf(nq) === 0 : index[i].indexOf(nq) >= 0);
       if (!ok) return;
-      out.push('<a class="vrow" href="#verse-' + v.n + '"><span class="num">' + v.n + '</span><span class="tx"><span class="sa1" lang="sa">' + esc(v.sa[0].replace(/-$/, '')) + '</span><span class="tt" lang="' + S.lang + '">' + esc(v.title[S.lang]) + '</span></span>' + ic('next', 18) + '</a>');
+      out.push('<a class="vrow" href="#verse-' + v.n + '"><span class="num">' + v.n + '</span><span class="tx"><span class="sa1" lang="sa">' + esc(sc(v.sa[0].replace(/-$/, ''))) + '</span><span class="tt" lang="' + S.lang + '">' + esc(v.title[S.lang]) + '</span></span>' + ic('next', 18) + '</a>');
     });
     return out.length ? out.join('') : '<div class="empty">' + esc(t('noMatch')) + '</div>';
   }
@@ -126,10 +128,10 @@
 
   function vYantra(n) {
     var v = verse(n), L = S.lang;
-    var alts = function (a) { return a.map(function (x) { return esc(x.dev); }).join('<br>' + '<span class="sep">' + esc(t('or')) + '</span><br>'); };
+    var alts = function (a) { return a.map(function (x) { return esc(sc(x.dev)); }).join('<br>' + '<span class="sep">' + esc(t('or')) + '</span><br>'); };
     return { title: t('yantraOf', { n: pad(n) }), nav: 'yantra', top: topSub('#verse-' + n, t('yantraOf', { n: pad(n) })), swipe: '#yantra-', n: n, html:
       '<button type="button" class="yframe" data-act="zoom" data-n="' + n + '" data-fid="zoom" aria-label="' + esc(t('yantraAlt', { n: n }) + '. ' + t('fullSize')) + '"><img src="' + U('img/y' + pad(n) + '.webp') + '" alt="' + esc(t('yantraAlt', { n: n })) + '" width="900" height="1048"></button>' +
-      '<div class="ytitle"><h1 tabindex="-1">' + esc(t('yantraName', { n: n })) + '</h1>' + (L === 'hi' ? '' : '<span lang="sa">भक्तामर यंत्र–' + toDev(n) + '</span>') + '</div>' +
+      '<div class="ytitle"><h1 tabindex="-1">' + esc(t('yantraName', { n: n })) + '</h1>' + ((L === 'hi' || L === 'gu') ? '' : '<span lang="sa">' + esc(sc('भक्तामर यंत्र–' + toDev(n))) + '</span>') + '</div>' +
       '<section class="card"><div class="lbl">' + esc(t('lblRiddhi')) + '</div><div class="mantra" lang="sa">' + alts(v.riddhi) + '</div></section>' +
       '<section class="card"><div class="lbl">' + esc(t('lblMantra')) + '</div><div class="mantra" lang="sa">' + alts(v.mantra) + '</div></section>' +
       '<a class="btn ghost" href="#practice-' + n + '">' + esc(t('mantraBenefit')) + '</a>' + pager(n, '#yantra-') };
@@ -137,7 +139,7 @@
 
   function altCards(list, label) {
     return '<section class="card"><div class="lbl">' + esc(label) + '</div>' + list.map(function (x, i) {
-      return (i ? '<div class="sep">' + esc(t('or')) + '</div>' : '') + '<div class="mantra" lang="sa">' + esc(x.dev) + '</div><div class="iast" lang="sa-Latn">' + esc(x.iast) + '</div>';
+      return (i ? '<div class="sep">' + esc(t('or')) + '</div>' : '') + '<div class="mantra" lang="sa">' + esc(sc(x.dev)) + '</div><div class="iast" lang="sa-Latn">' + esc(x.iast) + '</div>';
     }).join('') + '</section>';
   }
   function paras(txt, L) { return String(txt).split(/\n+/).map(function (p) { return '<p class="body" lang="' + L + '">' + esc(p) + '</p>'; }).join(''); }
@@ -184,7 +186,7 @@
   function vLanguage() {
     var L = S.lang;
     var opts = LANGS.map(function (k) {
-      return '<label class="opt" for="lg-' + k + '"><input id="lg-' + k + '" type="radio" name="lang" data-act="lang" data-fid="lg-' + k + '" data-v="' + k + '"' + (L === k ? ' checked' : '') + '><span><span class="on1">' + esc(UI[k]._name) + '</span><span class="on2">' + esc(({ en: 'English', hi: 'Hindi', es: 'Spanish' })[k]) + '</span></span></label>';
+      return '<label class="opt" for="lg-' + k + '"><input id="lg-' + k + '" type="radio" name="lang" data-act="lang" data-fid="lg-' + k + '" data-v="' + k + '"' + (L === k ? ' checked' : '') + '><span><span class="on1">' + esc(UI[k]._name) + '</span><span class="on2">' + esc(({ en: 'English', hi: 'Hindi', gu: 'Gujarati', es: 'Spanish', pt: 'Portuguese', it: 'Italian' })[k]) + '</span></span></label>';
     }).join('') + SOON.map(function (s) {
       return '<div class="opt soon"><input type="radio" disabled aria-label="' + esc(s.eng) + '"><span><span class="on1">' + esc(s.name) + '</span><span class="on2">' + esc(s.eng + ' · ' + t('inReview')) + '</span></span></div>';
     }).join('');
@@ -236,7 +238,7 @@
     document.documentElement.lang = S.lang;
     document.documentElement.style.setProperty('--scale', S.size);
     document.title = cur.title + (cur.title.indexOf('Shiv') === 0 ? '' : ' · Shiv Luminoso');
-    $app.innerHTML = '<div class="app' + (S.lang === 'hi' ? ' is-hi' : '') + (S.sa ? '' : ' hide-sa') + '">' + cur.top + '<main id="main" class="scroll" tabindex="-1">' + cur.html + '</main>' + nav(cur.nav) + '</div>';
+    $app.innerHTML = '<div class="app' + (S.lang === 'hi' ? ' is-hi' : '') + (S.lang === 'gu' ? ' is-gu' : '') + (S.sa ? '' : ' hide-sa') + '">' + cur.top + '<main id="main" class="scroll" tabindex="-1">' + cur.html + '</main>' + nav(cur.nav) + '</div>';
     var main = document.getElementById('main');
     /* Devanagari must not be letter-spaced (it breaks the conjuncts), so wrap it in labels */
     $app.querySelectorAll('.lbl,.sep').forEach(function (el) {

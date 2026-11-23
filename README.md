@@ -1,6 +1,6 @@
 # Shiv Luminoso · Bhaktamar Stotra
 
-A free app of the Bhaktamar Stotra: all 48 verses in Sanskrit, with pronunciation and meaning in English, Hindi and Spanish,
+A free app of the Bhaktamar Stotra: all 48 verses in Sanskrit, with pronunciation and meaning in English, Hindi, Gujarati, Spanish, Portuguese and Italian,
 the 48 yantras, and the riddhi, mantra, method and benefit for each verse. It also has a 108-count for daily practice.
 
 Made by Sneha Zabak in loving memory of her grandmother, Sushila Meghraj Lunawat (Nani-ji, 12 July 1935 to 12 May 2026),
