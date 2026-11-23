@@ -214,7 +214,7 @@
       '<a class="btn" href="' + esc(D.book.url) + '" target="_blank" rel="noopener">' + ic('book', 20) + '<span>' + esc(t('download')) + '</span></a>' +
       '<button type="button" class="btn ghost" data-act="share" data-fid="share">' + ic('share', 20) + '<span>' + esc(t('share')) + '</span></button>' +
       '<section class="card"><div class="lbl">' + esc(t('copyTitle')) + '</div><p class="small" lang="' + S.lang + '">' + esc(t('copyright')) + '</p><p class="note">' + esc(t('jinvani')) + '</p>' +
-      '<a href="' + esc(D.book.url) + '" target="_blank" rel="noopener" class="small" style="font-weight:700;display:flex;align-items:center;min-height:44px">www.shivtranslators.com</a></section>' };
+      '<a href="' + esc(D.book.site) + '" target="_blank" rel="noopener" class="small" style="font-weight:700;display:flex;align-items:center;min-height:44px">www.shivtranslators.com</a></section>' };
   }
 
   /* ---------- router ---------- */
