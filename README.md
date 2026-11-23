@@ -3,7 +3,7 @@
 A free app of the Bhaktamar Stotra: all 48 verses in Sanskrit, with pronunciation and meaning in English, Hindi, Gujarati, Spanish, Portuguese and Italian,
 the 48 yantras, and the riddhi, mantra, method and benefit for each verse. It also has a 108-count for daily practice.
 
-Made by Sneha Zabak in loving memory of her grandmother, Sushila Meghraj Lunawat (Naniji, 12 July 1935 to 12 May 2026),
+Made by Sneha Zabak in loving memory of her grandmother, Sushila Meghraj Lunawat (12 July 1935 to 12 May 2026),
 and shared free through [Shiv Translators](https://www.shivtranslators.com).
 
 No accounts, no tracking, no ads. The app only loads its own files.
