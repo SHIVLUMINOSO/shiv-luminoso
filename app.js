@@ -35,7 +35,7 @@
   var lines = function (a) { return a.map(function (x) { return esc(sc(x)); }).join('<br>'); };
   var verse = function (n) { return D.verses[n - 1]; };
   var clampN = function (x) { x = parseInt(x, 10); return x >= 1 && x <= 48 ? x : 1; };
-  var BK = D.book, BOOKBASE = window.LUZ_BOOK_BASE || (IMG + BK.dir);     // the book's pages are pictures, p001.webp to p402.webp, each loaded only when it is read
+  var BK = D.book, BOOKBASE = window.LUZ_BOOK_BASE || (IMG + BK.dir);     // the book's pages are pictures, p001.webp to p406.webp, each loaded only when it is read
   var clampP = function (x) { x = parseInt(x, 10); return x >= 1 && x <= BK.pages ? x : 1; };
   var pageUrl = function (n) { return BOOKBASE + 'p' + String(n).padStart(3, '0') + '.webp'; };
   var todayN = function () { var d = new Date(); return Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5) % 48 + 1; };
