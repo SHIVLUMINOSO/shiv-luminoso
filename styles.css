@@ -23,6 +23,8 @@ h1:focus,main:focus{outline:none}
 .pill,.round{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border:1px solid var(--red);border-radius:22px;background:transparent;color:var(--red);text-decoration:none;font:700 .875rem/1 var(--serif);cursor:pointer}
 .pill{padding:0 12px}
 .round{width:44px;padding:0;flex:none}
+.round[aria-pressed=true]{background:var(--red);color:var(--ivory)}
+.tools{display:flex;align-items:center;gap:8px;flex:none}
 .pill[aria-pressed=true],.pill.on{background:var(--red);color:var(--ivory)}
 .pill[disabled],.pill.off{opacity:.5;cursor:default}
 .ico{flex:none}

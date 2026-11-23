@@ -45,18 +45,22 @@
     globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.5 2.5 3.5 5.5 3.5 8.5s-1 6-3.5 8.5c-2.500-2.500-3.500-5.500-3.500-8.500s1-6 3.500-8.500z"/>',
     back: '<path d="M15 5l-7 7 7 7"/>',
     next: '<path d="m9 5 7 7-7 7"/>',
+    music: '<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>',
     heart: '<path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.6 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/>',
     share: '<circle cx="6" cy="12" r="2.4"/><circle cx="17.5" cy="6" r="2.4"/><circle cx="17.5" cy="18" r="2.4"/><path d="m8.2 10.8 7.2-3.6M8.2 13.2l7.2 3.6"/>'
   };
   var ic = function (n, s) { s = s || 22; return '<svg class="ico" aria-hidden="true" focusable="false" width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + ICON[n] + '</svg>'; };
 
   /* ---------- chrome ---------- */
-  function langPill() {
-    return '<a class="pill" href="#language" aria-label="' + esc(t('language')) + ': ' + esc(UI[S.lang]._name) + '">' + ic('globe', 18) + '<span>' + esc(UI[S.lang]._name) + '</span></a>';
+  function langPill(short) {   // inner screens show the short code (EN, ES, GU...) to leave room for the title
+    return '<a class="pill" href="#language" aria-label="' + esc(t('language')) + ': ' + esc(UI[S.lang]._name) + '">' + ic('globe', 18) + '<span>' + esc(short ? UI[S.lang]._short : UI[S.lang]._name) + '</span></a>';
   }
-  function topHome() { return '<header class="top home"><div class="lbl lat" style="text-align:left">Shiv Luminoso</div>' + langPill() + '</header>'; }
+  function musicBtn() {
+    return '<button type="button" class="round" data-act="music" data-fid="music" aria-pressed="' + MUSIC.on + '" aria-label="' + esc(t('music')) + '">' + ic('music', 20) + '</button>';
+  }
+  function topHome() { return '<header class="top home"><div class="lbl lat" style="text-align:left">Shiv Luminoso</div><div class="tools">' + musicBtn() + langPill() + '</div></header>'; }
   function topSub(back, label) {
-    return '<header class="top"><a class="round" href="' + back + '" aria-label="' + esc(t('back')) + '">' + ic('back') + '</a><div class="lbl">' + esc(label) + '</div>' + langPill() + '</header>';
+    return '<header class="top"><a class="round" href="' + back + '" aria-label="' + esc(t('back')) + '">' + ic('back') + '</a><div class="lbl">' + esc(label) + '</div><div class="tools">' + musicBtn() + langPill(true) + '</div></header>';
   }
   function nav(active) {
     var items = [['home', '#home', 'home'], ['verses', '#verses', 'verses'], ['yantra', '#yantras', 'yantras'], ['book', '#book', 'book']];
@@ -100,7 +104,7 @@
     return out.length ? out.join('') : '<div class="empty">' + esc(t('noMatch')) + '</div>';
   }
   function vVerses() {
-    return { title: t('versesTitle'), nav: 'verses', top: '<header class="top home"><div class="lbl lat" style="text-align:left">Bhaktamar Stotra</div>' + langPill() + '</header>', html:
+    return { title: t('versesTitle'), nav: 'verses', top: '<header class="top home"><div class="lbl lat" style="text-align:left">Bhaktamar Stotra</div><div class="tools">' + musicBtn() + langPill() + '</div></header>', html:
       '<div><h1 tabindex="-1">' + esc(t('versesTitle')) + '</h1><p class="note">' + esc(t('tapToRead')) + '</p></div>' +
       '<div><label class="vh" for="q">' + esc(t('searchLabel')) + '</label><input id="q" class="search" type="search" autocomplete="off" placeholder="' + esc(t('search')) + '" value="' + esc(S.q) + '"></div>' +
       '<div class="list" id="list">' + rows(S.q) + '</div>' };
@@ -167,7 +171,7 @@
     var g = D.verses.map(function (v) {
       return '<a href="#yantra-' + v.n + '" aria-label="' + esc(t('yantra') + ' ' + v.n) + '"><img loading="lazy" decoding="async" src="' + U('thumb/y' + pad(v.n) + '.webp') + '" alt="" width="260" height="303"><span>' + v.n + '</span></a>';
     }).join('');
-    return { title: t('cardYantras'), nav: 'yantra', top: '<header class="top home"><div class="lbl lat" style="text-align:left">Bhaktamar Stotra</div>' + langPill() + '</header>', html:
+    return { title: t('cardYantras'), nav: 'yantra', top: '<header class="top home"><div class="lbl lat" style="text-align:left">Bhaktamar Stotra</div><div class="tools">' + musicBtn() + langPill() + '</div></header>', html:
       '<div><h1 tabindex="-1">' + esc(t('cardYantras')) + '</h1></div><div class="ygrid">' + g + '</div>' };
   }
 
@@ -193,7 +197,7 @@
     var sizes = [[1, 'sizeM'], [0.9, 'sizeS'], [1.15, 'sizeL']].sort(function (a, b) { return a[0] - b[0]; }).map(function (x) {
       return '<button type="button" class="pill" data-act="size" data-v="' + x[0] + '" data-fid="size-' + x[0] + '" aria-pressed="' + (S.size === x[0]) + '">' + esc(t(x[1])) + '</button>';
     }).join('');
-    return { title: t('chooseLang'), nav: 'home', top: '<header class="top"><button type="button" class="round" data-act="back" aria-label="' + esc(t('back')) + '">' + ic('back') + '</button><div class="lbl">' + esc(t('language')) + '</div><span style="width:44px"></span></header>', html:
+    return { title: t('chooseLang'), nav: 'home', top: '<header class="top"><button type="button" class="round" data-act="back" aria-label="' + esc(t('back')) + '">' + ic('back') + '</button><div class="lbl">' + esc(t('language')) + '</div>' + musicBtn() + '</header>', html:
       '<h1 class="ttl" tabindex="-1" style="font-size:2.125rem">' + esc(t('chooseLang')) + '</h1>' +
       '<fieldset><legend class="vh">' + esc(t('language')) + '</legend>' + opts + '</fieldset>' +
       '<div class="card" style="padding:6px 16px"><label class="sw" for="sw-sa">' + esc(t('showSanskrit')) + '<input id="sw-sa" type="checkbox" data-act="sa" data-fid="sw-sa"' + (S.sa ? ' checked' : '') + '></label>' +
@@ -204,7 +208,7 @@
   }
 
   function vBook() {
-    return { title: t('bookTitle'), nav: 'book', top: '<header class="top home"><div class="lbl" style="text-align:left">' + esc(t('bookLabel')) + '</div>' + langPill() + '</header>', html:
+    return { title: t('bookTitle'), nav: 'book', top: '<header class="top home"><div class="lbl" style="text-align:left">' + esc(t('bookLabel')) + '</div><div class="tools">' + musicBtn() + langPill() + '</div></header>', html:
       '<h1 class="ttl" tabindex="-1" style="font-size:2.125rem">' + esc(t('bookTitle')) + '</h1>' +
       '<div class="bookrow"><img src="' + U('cover.jpg') + '" alt="" width="112" height="175"><div><b>' + esc(t('freePdf')) + '</b><i>' + esc(t('edition')) + '</i></div></div>' +
       '<a class="btn" href="' + esc(D.book.url) + '" target="_blank" rel="noopener">' + ic('book', 20) + '<span>' + esc(t('download')) + '</span></a>' +
@@ -288,6 +292,61 @@
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { toast(t('copied')); }, function () { toast(url); });
     else toast(url);
   }
+
+  /* ---------- music: an original calm drone, silent until the visitor taps the button ---------- */
+  var MUSIC = { on: false, els: [], cur: 0, next: null, timer: 0, ramp: 0, gain: 0, away: false };
+  var XFADE = 6, VOL = 0.8;     // the file fades out and in over 6 seconds; the next copy starts as the last one fades
+  function musicEl(i) {
+    if (MUSIC.els[i]) return MUSIC.els[i];
+    var a = new Audio(); a.preload = 'auto'; a.src = window.LUZ_AUDIO || (IMG + 'music/shiv-luminoso.mp3'); a.volume = MUSIC.gain;
+    a.addEventListener('ended', function () {
+      if (a !== MUSIC.els[MUSIC.cur]) return;
+      if (MUSIC.next !== null) { MUSIC.cur = MUSIC.next; MUSIC.next = null; }
+      else if (MUSIC.on) { a.currentTime = 0; a.play(); }
+    });
+    return (MUSIC.els[i] = a);
+  }
+  function musicGain() { MUSIC.els.forEach(function (a) { if (a) { try { a.volume = MUSIC.gain; } catch (e) {} } }); }
+  function rampGain(to, ms, done) {
+    clearInterval(MUSIC.ramp); var from = MUSIC.gain, t0 = Date.now();
+    MUSIC.ramp = setInterval(function () {
+      var k = Math.min(1, (Date.now() - t0) / ms); MUSIC.gain = from + (to - from) * k; musicGain();
+      if (k >= 1) { clearInterval(MUSIC.ramp); if (done) done(); }
+    }, 40);
+  }
+  function musicTick() {
+    var a = MUSIC.els[MUSIC.cur];
+    if (!MUSIC.on || !a || !a.duration || MUSIC.next !== null || a.paused) return;
+    if (a.currentTime >= a.duration - XFADE - 0.1) {
+      var o = MUSIC.cur ? 0 : 1, b = musicEl(o);
+      try { b.currentTime = 0; } catch (e) {}
+      var p = b.play(); if (p && p.catch) p.catch(function () {});
+      MUSIC.next = o;
+    }
+  }
+  function musicStart() {
+    MUSIC.gain = 0; var a = musicEl(MUSIC.cur), p = a.play();
+    if (p && p.catch) p.catch(function () { MUSIC.on = false; musicSync(); });   // the browser said no
+    if (MUSIC.next !== null) { var q = musicEl(MUSIC.next).play(); if (q && q.catch) q.catch(function () {}); }
+    rampGain(VOL, 1200);
+    clearInterval(MUSIC.timer); MUSIC.timer = setInterval(musicTick, 400);
+  }
+  function musicStop() {
+    rampGain(0, 500, function () { if (!MUSIC.on) { MUSIC.els.forEach(function (a) { if (a) a.pause(); }); clearInterval(MUSIC.timer); } });
+  }
+  function musicSync() {
+    var b = document.querySelectorAll('[data-act="music"]');
+    for (var i = 0; i < b.length; i++) b[i].setAttribute('aria-pressed', MUSIC.on);
+  }
+  function toggleMusic() {
+    MUSIC.on = !MUSIC.on; MUSIC.away = false;
+    if (MUSIC.on) musicStart(); else musicStop();
+    musicSync(); toast(t(MUSIC.on ? 'musicOn' : 'musicOff'));
+  }
+  document.addEventListener('visibilitychange', function () {   // the music rests while the page is out of sight
+    if (document.hidden) { if (MUSIC.on) { MUSIC.away = true; clearInterval(MUSIC.timer); MUSIC.els.forEach(function (a) { if (a) a.pause(); }); } }
+    else if (MUSIC.on && MUSIC.away) { MUSIC.away = false; musicStart(); }
+  });
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-act]'); if (!el) return;
     var a = el.getAttribute('data-act'), v = el.getAttribute('data-v');
@@ -301,6 +360,7 @@
     else if (a === 'zclose') closeZoom();
     else if (a === 'zimg') zoomEl.classList.toggle('big');
     else if (a === 'share') share();
+    else if (a === 'music') toggleMusic();
     else if (a === 'back') { if (history.length > 1) history.back(); else location.hash = '#home'; }
   });
   document.addEventListener('change', function (e) {

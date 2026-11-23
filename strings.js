@@ -5,6 +5,7 @@ window.LUZ_UI = {
   en: {
     _name: 'English', _short: 'EN', _lang: 'en',
     tagline: 'Forty-eight verses of daily prayer, in seven languages',
+    music: 'Music', musicOn: 'Music on', musicOff: 'Music off',
     today: 'Today’s verse', readVerse: 'Read verse {n}',
     cardVerses: '48 verses', cardYantras: '48 yantras', cardStory: 'Her story',
     inMemoryOf: 'In loving memory of', sharedBy: 'Shared free by Shiv Translators',
@@ -39,6 +40,7 @@ window.LUZ_UI = {
   hi: {
     _name: 'हिन्दी', _short: 'हि', _lang: 'hi',
     tagline: 'सात भाषाओं में दैनिक प्रार्थना के अड़तालीस श्लोक',
+    music: 'संगीत', musicOn: 'संगीत चालू', musicOff: 'संगीत बंद',
     today: 'आज का श्लोक', readVerse: 'श्लोक {n} पढ़ें',
     cardVerses: '48 श्लोक', cardYantras: '48 यंत्र', cardStory: 'उनकी कहानी',
     inMemoryOf: 'प्रेमपूर्ण स्मृति में', sharedBy: 'Shiv Translators द्वारा निःशुल्क साझा',
@@ -73,6 +75,7 @@ window.LUZ_UI = {
   es: {
     _name: 'Español', _short: 'ES', _lang: 'es',
     tagline: 'Cuarenta y ocho versos de oración diaria, en siete idiomas',
+    music: 'Música', musicOn: 'Música activada', musicOff: 'Música desactivada',
     today: 'Verso de hoy', readVerse: 'Leer el verso {n}',
     cardVerses: '48 versos', cardYantras: '48 yantras', cardStory: 'Su historia',
     inMemoryOf: 'En amoroso recuerdo de', sharedBy: 'Compartido gratis por Shiv Translators',
@@ -107,6 +110,7 @@ window.LUZ_UI = {
   pt: {
     _name: 'Português', _short: 'PT', _lang: 'pt',
     tagline: 'Quarenta e oito versos de oração diária, em sete idiomas',
+    music: 'Música', musicOn: 'Música ligada', musicOff: 'Música desligada',
     today: 'Verso de hoje', readVerse: 'Ler o verso {n}',
     cardVerses: '48 versos', cardYantras: '48 yantras', cardStory: 'A história dela',
     inMemoryOf: 'Em amorosa memória de', sharedBy: 'Compartilhado gratuitamente pela Shiv Translators',
@@ -141,6 +145,7 @@ window.LUZ_UI = {
   it: {
     _name: 'Italiano', _short: 'IT', _lang: 'it',
     tagline: 'Quarantotto versi di preghiera quotidiana, in sette lingue',
+    music: 'Musica', musicOn: 'Musica attiva', musicOff: 'Musica disattivata',
     today: 'Il verso di oggi', readVerse: 'Leggi il verso {n}',
     cardVerses: '48 versi', cardYantras: '48 yantra', cardStory: 'La sua storia',
     inMemoryOf: 'In amorevole ricordo di', sharedBy: 'Condiviso gratuitamente da Shiv Translators',
@@ -175,6 +180,7 @@ window.LUZ_UI = {
   gu: {
     _name: 'ગુજરાતી', _short: 'ગુ', _lang: 'gu',
     tagline: 'સાત ભાષાઓમાં દૈનિક પ્રાર્થનાના અડતાળીસ શ્લોક',
+    music: 'સંગીત', musicOn: 'સંગીત ચાલુ', musicOff: 'સંગીત બંધ',
     today: 'આજનો શ્લોક', readVerse: 'શ્લોક {n} વાંચો',
     cardVerses: '48 શ્લોક', cardYantras: '48 યંત્ર', cardStory: 'તેમની કથા',
     inMemoryOf: 'પ્રેમભરી સ્મૃતિમાં', sharedBy: 'Shiv Translators તરફથી મફત વહેંચાયેલું',
