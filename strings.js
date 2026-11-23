@@ -35,6 +35,11 @@ window.LUZ_UI = {
     copied: 'Link copied', copyTitle: 'COPYRIGHT AND SHARING',
     copyright: '© 2026 Sneha Zabak. Shared free by Shiv Translators. You may read, print and share this book free of charge, exactly as it is and with the copyright page. Please do not sell it, charge for it, or change it. If you would like to translate or adapt it, please ask first.',
     jinvani: 'As with all Jinvani, please keep this book in a clean and respectful place, and not on the floor.',
+    readBook: 'Read the book here', continueBook: 'Continue reading · page {n}', pageOf: 'Page {n} of {total}',
+    pageAlt: 'Page {n} of {total} of the Bhaktamar Stotra book', contents: 'Contents', goToPage: 'Go to page', go: 'Go',
+    zoomIn: 'Zoom in', zoomOut: 'Fit to screen', jumpVerse: 'Go to a verse', retry: 'Try again',
+    pageFail: 'This page could not load. Please check your connection and try again.',
+    printOff: 'Printing is switched off on this screen. To print the book, please use "Download the book (PDF)" and print the PDF.',
     shareText: 'Bhaktamar Stotra: forty-eight verses of daily prayer, free to read.'
   },
   hi: {
@@ -70,6 +75,11 @@ window.LUZ_UI = {
     copied: 'लिंक कॉपी हो गया', copyTitle: 'कॉपीराइट और साझा करना',
     copyright: '© 2026 Sneha Zabak. Shiv Translators द्वारा निःशुल्क साझा। आप इस पुस्तक को जैसी है वैसी ही, कॉपीराइट पृष्ठ सहित, निःशुल्क पढ़, छाप और साझा कर सकते हैं। कृपया इसे बेचें नहीं, इसके लिए शुल्क न लें और इसमें कोई बदलाव न करें। अनुवाद या रूपांतर के लिए कृपया पहले अनुमति लें।',
     jinvani: 'सभी जिनवाणी की तरह, कृपया इस पुस्तक को स्वच्छ और आदरपूर्ण स्थान पर रखें, भूमि पर नहीं।',
+    readBook: 'पुस्तक यहीं पढ़ें', continueBook: 'आगे पढ़ें · पृष्ठ {n}', pageOf: 'पृष्ठ {n} / {total}',
+    pageAlt: 'भक्तामर स्तोत्र पुस्तक का पृष्ठ {n} / {total}', contents: 'विषय-सूची', goToPage: 'पृष्ठ पर जाएँ', go: 'जाएँ',
+    zoomIn: 'बड़ा करें', zoomOut: 'स्क्रीन के अनुसार', jumpVerse: 'किसी श्लोक पर जाएँ', retry: 'फिर कोशिश करें',
+    pageFail: 'यह पृष्ठ नहीं खुल सका। कृपया इंटरनेट जाँचकर फिर कोशिश करें।',
+    printOff: 'इस स्क्रीन से छपाई बंद है। पुस्तक छापने के लिए कृपया "पुस्तक डाउनलोड करें (PDF)" से PDF लेकर उसे छापें।',
     shareText: 'भक्तामर स्तोत्र: दैनिक प्रार्थना के अड़तालीस श्लोक, निःशुल्क पढ़ें।'
   },
   es: {
@@ -105,6 +115,11 @@ window.LUZ_UI = {
     copied: 'Enlace copiado', copyTitle: 'DERECHOS Y USO',
     copyright: '© 2026 Sneha Zabak. Compartido gratis por Shiv Translators. Puedes leer, imprimir y compartir este libro gratis, tal como está y con la página de derechos. Por favor, no lo vendas, no cobres por él ni lo modifiques. Si deseas traducirlo o adaptarlo, pide permiso antes.',
     jinvani: 'Como con toda Jinvani, conserva este libro en un lugar limpio y respetuoso, y no en el suelo.',
+    readBook: 'Leer el libro aquí', continueBook: 'Seguir leyendo · página {n}', pageOf: 'Página {n} de {total}',
+    pageAlt: 'Página {n} de {total} del libro Bhaktamar Stotra', contents: 'Contenido', goToPage: 'Ir a la página', go: 'Ir',
+    zoomIn: 'Ampliar', zoomOut: 'Ajustar a la pantalla', jumpVerse: 'Ir a un verso', retry: 'Reintentar',
+    pageFail: 'No se pudo cargar esta página. Revisa tu conexión e inténtalo de nuevo.',
+    printOff: 'La impresión está desactivada en esta pantalla. Para imprimir el libro, usa «Descargar el libro (PDF)» e imprime el PDF.',
     shareText: 'Bhaktamar Stotra: cuarenta y ocho versos de oración diaria, para leer gratis.'
   },
   pt: {
@@ -140,6 +155,11 @@ window.LUZ_UI = {
     copied: 'Link copiado', copyTitle: 'DIREITOS AUTORAIS E COMPARTILHAMENTO',
     copyright: '© 2026 Sneha Zabak. Compartilhado gratuitamente pela Shiv Translators. Você pode ler, imprimir e compartilhar este livro gratuitamente, exatamente como está e com a página de direitos autorais. Por favor, não o venda, não cobre por ele nem o altere. Se quiser traduzi-lo ou adaptá-lo, peça autorização antes.',
     jinvani: 'Como toda Jinvani, guarde este livro em um lugar limpo e respeitoso, e não no chão.',
+    readBook: 'Ler o livro aqui', continueBook: 'Continuar a ler · página {n}', pageOf: 'Página {n} de {total}',
+    pageAlt: 'Página {n} de {total} do livro Bhaktamar Stotra', contents: 'Índice', goToPage: 'Ir para a página', go: 'Ir',
+    zoomIn: 'Ampliar', zoomOut: 'Ajustar à tela', jumpVerse: 'Ir para um verso', retry: 'Tentar de novo',
+    pageFail: 'Não foi possível carregar esta página. Verifique sua conexão e tente de novo.',
+    printOff: 'A impressão está desativada nesta tela. Para imprimir o livro, use «Baixar o livro (PDF)» e imprima o PDF.',
     shareText: 'Bhaktamar Stotra: quarenta e oito versos de oração diária, para ler gratuitamente.'
   },
   it: {
@@ -175,6 +195,11 @@ window.LUZ_UI = {
     copied: 'Link copiato', copyTitle: 'DIRITTI D’AUTORE E CONDIVISIONE',
     copyright: '© 2026 Sneha Zabak. Condiviso gratuitamente da Shiv Translators. Puoi leggere, stampare e condividere gratuitamente questo libro, così com’è e con la pagina del copyright. Ti chiediamo di non venderlo, di non farlo pagare e di non modificarlo. Se desideri tradurlo o adattarlo, chiedi prima il permesso.',
     jinvani: 'Come per ogni Jinvani, conserva questo libro in un luogo pulito e rispettoso, e non sul pavimento.',
+    readBook: 'Leggi il libro qui', continueBook: 'Continua a leggere · pagina {n}', pageOf: 'Pagina {n} di {total}',
+    pageAlt: 'Pagina {n} di {total} del libro Bhaktamar Stotra', contents: 'Indice', goToPage: 'Vai alla pagina', go: 'Vai',
+    zoomIn: 'Ingrandisci', zoomOut: 'Adatta allo schermo', jumpVerse: 'Vai a un verso', retry: 'Riprova',
+    pageFail: 'Non è stato possibile caricare questa pagina. Controlla la connessione e riprova.',
+    printOff: 'La stampa è disattivata in questa schermata. Per stampare il libro, usa «Scarica il libro (PDF)» e stampa il PDF.',
     shareText: 'Bhaktamar Stotra: quarantotto versi di preghiera quotidiana, da leggere gratuitamente.'
   },
   gu: {
@@ -210,6 +235,11 @@ window.LUZ_UI = {
     copied: 'લિંક કૉપિ થઈ', copyTitle: 'કૉપિરાઇટ અને વહેંચણી',
     copyright: '© 2026 Sneha Zabak. Shiv Translators તરફથી મફત વહેંચાયેલું. તમે આ પુસ્તક જેમ છે તેમ જ, કૉપિરાઇટ પાના સાથે, મફતમાં વાંચી, છાપી અને વહેંચી શકો છો. કૃપા કરીને તેને વેચશો નહીં, તેના પૈસા લેશો નહીં અને તેમાં ફેરફાર કરશો નહીં. તેનો અનુવાદ કે રૂપાંતર કરવા માંગતા હો તો પહેલાં પરવાનગી લો.',
     jinvani: 'દરેક જિનવાણીની જેમ, આ પુસ્તક સ્વચ્છ અને આદરપૂર્ણ સ્થળે રાખો, જમીન પર નહીં.',
+    readBook: 'પુસ્તક અહીં વાંચો', continueBook: 'આગળ વાંચો · પાનું {n}', pageOf: 'પાનું {n} / {total}',
+    pageAlt: 'ભક્તામર સ્તોત્ર પુસ્તકનું પાનું {n} / {total}', contents: 'અનુક્રમણિકા', goToPage: 'પાના પર જાઓ', go: 'જાઓ',
+    zoomIn: 'મોટું કરો', zoomOut: 'સ્ક્રીન પ્રમાણે', jumpVerse: 'કોઈ શ્લોક પર જાઓ', retry: 'ફરી પ્રયત્ન કરો',
+    pageFail: 'આ પાનું ખૂલ્યું નહીં. કૃપા કરીને ઇન્ટરનેટ તપાસીને ફરી પ્રયત્ન કરો.',
+    printOff: 'આ સ્ક્રીન પરથી છાપકામ બંધ છે. પુસ્તક છાપવા માટે કૃપા કરીને "પુસ્તક ડાઉનલોડ કરો (PDF)" દ્વારા PDF લઈને તે છાપો.',
     shareText: 'ભક્તામર સ્તોત્ર: દૈનિક પ્રાર્થનાના અડતાળીસ શ્લોક, મફત વાંચો.'
   }
 };

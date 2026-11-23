@@ -2,6 +2,7 @@
 
 A free app of the Bhaktamar Stotra: all 48 verses in Sanskrit, with pronunciation and meaning in English, Hindi, Gujarati, Spanish, Portuguese and Italian,
 the 48 yantras, and the riddhi, mantra, method and benefit for each verse. It also has a 108-count for daily practice.
+The free book (402 pages) can be read page by page inside the app, or downloaded as a PDF.
 
 Made by Sneha Zabak in loving memory of her grandmother, Sushila Meghraj Lunawat (12 July 1935 to 12 May 2026),
 and shared free through [Shiv Translators](https://www.shivtranslators.com).
@@ -15,6 +16,7 @@ Download this folder and open `index.html`.
 - `index.html` is the page. `app.js` holds the screens, `styles.css` and `fonts.css` the look, and `fonts/` the bundled fonts.
 - `data.js` holds all the verses and text. `strings.js` holds the words on the buttons and labels.
 - `img/` has the 48 yantras (large), `thumb/` the same yantras (small), and `cover.jpg` and `nani.jpg` the two pictures.
+- `book/` has the 402 pages of the free book as pictures (`p001.webp` to `p402.webp`), opened one page at a time by the app's book reader. They are the pages of the book, which may be read, printed and shared free exactly as it is, with its copyright page (page 2).
 - `music/` has the calm meditation background music (about 3.5 minutes, plays in a loop). The melody, timing and mix were composed for this app. The instrument sound is a real hang drum recording, "Hang D minor" from the FreePats project (CC0 1.0 public domain), recorded in 2017 at Medialab-Prado, Madrid, by Gonzalo and Roberto, played by Mar. Thank you to them. It stays silent until a visitor taps the music button.
 
 ## Copyright

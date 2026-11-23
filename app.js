@@ -35,6 +35,9 @@
   var lines = function (a) { return a.map(function (x) { return esc(sc(x)); }).join('<br>'); };
   var verse = function (n) { return D.verses[n - 1]; };
   var clampN = function (x) { x = parseInt(x, 10); return x >= 1 && x <= 48 ? x : 1; };
+  var BK = D.book, BOOKBASE = window.LUZ_BOOK_BASE || (IMG + BK.dir);     // the book's pages are pictures, p001.webp to p402.webp, each loaded only when it is read
+  var clampP = function (x) { x = parseInt(x, 10); return x >= 1 && x <= BK.pages ? x : 1; };
+  var pageUrl = function (n) { return BOOKBASE + 'p' + String(n).padStart(3, '0') + '.webp'; };
   var todayN = function () { var d = new Date(); return Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5) % 48 + 1; };
 
   var ICON = {
@@ -68,8 +71,8 @@
       return '<a href="' + i[1] + '"' + (active === i[0] ? ' aria-current="page"' : '') + '>' + ic(i[0]) + '<span>' + esc(t(i[2])) + '</span></a>';
     }).join('') + '</nav>';
   }
-  function pager(n, base) {
-    var p = n > 1, x = n < 48;
+  function pager(n, base, max) {
+    var p = n > 1, x = n < (max || 48);
     return '<div class="row"><a class="btn ghost" href="' + (p ? base + (n - 1) : '#') + '"' + (p ? '' : ' aria-disabled="true" tabindex="-1"') + '>' + ic('back', 18) + '<span>' + esc(t('prev')) + '</span></a>' +
       '<a class="btn" href="' + (x ? base + (n + 1) : '#') + '"' + (x ? '' : ' aria-disabled="true" tabindex="-1"') + '><span>' + esc(t('next')) + '</span>' + ic('next', 18) + '</a></div>';
   }
@@ -211,10 +214,49 @@
     return { title: t('bookTitle'), nav: 'book', top: '<header class="top home"><div class="lbl" style="text-align:left">' + esc(t('bookLabel')) + '</div><div class="tools">' + musicBtn() + langPill() + '</div></header>', html:
       '<h1 class="ttl" tabindex="-1" style="font-size:2.125rem">' + esc(t('bookTitle')) + '</h1>' +
       '<div class="bookrow"><img src="' + U('cover.jpg') + '" alt="" width="112" height="175"><div><b>' + esc(t('freePdf')) + '</b><i>' + esc(t('edition')) + '</i></div></div>' +
-      '<a class="btn" href="' + esc(D.book.url) + '" target="_blank" rel="noopener">' + ic('book', 20) + '<span>' + esc(t('download')) + '</span></a>' +
+      '<a class="btn" href="#read-' + store.get('bookpage', 1) + '">' + ic('verses', 20) + '<span>' + esc(store.get('bookpage', 1) > 1 ? t('continueBook', { n: store.get('bookpage', 1) }) : t('readBook')) + '</span></a>' +
+      '<a class="btn ghost" href="' + esc(D.book.url) + '" target="_blank" rel="noopener">' + ic('book', 20) + '<span>' + esc(t('download')) + '</span></a>' +
       '<button type="button" class="btn ghost" data-act="share" data-fid="share">' + ic('share', 20) + '<span>' + esc(t('share')) + '</span></button>' +
       '<section class="card"><div class="lbl">' + esc(t('copyTitle')) + '</div><p class="small" lang="' + S.lang + '">' + esc(t('copyright')) + '</p><p class="note">' + esc(t('jinvani')) + '</p>' +
       '<a href="' + esc(D.book.site) + '" target="_blank" rel="noopener" class="small" style="font-weight:700;display:flex;align-items:center;min-height:44px">www.shivtranslators.com</a></section>' };
+  }
+
+  /* ---------- the book, read page by page ---------- */
+  function vRead(n) {
+    var N = BK.pages, big = !!S.rdBig;
+    return { title: t('pageOf', { n: n, total: N }), nav: 'book', top: topSub('#book', t('pageOf', { n: n, total: N })), swipe: '#read-', n: n, max: N,
+      after: function () {
+        store.set('bookpage', n);
+        var img = document.getElementById('rdimg'), fail = document.getElementById('rdfail');
+        var warm = function () { [n + 1, n - 1].forEach(function (k) { if (k >= 1 && k <= N) { var im = new Image(); im.src = pageUrl(k); } }); };
+        img.addEventListener('error', function () { fail.hidden = false; });
+        img.addEventListener('load', function () { fail.hidden = true; warm(); });
+        if (img.complete && img.naturalWidth) warm();
+      }, html:
+      '<h1 class="vh" tabindex="-1">' + esc(t('pageOf', { n: n, total: N })) + '</h1>' +
+      '<div class="rd' + (big ? ' big' : '') + '">' +
+        '<div class="rdbar"><a class="pill" href="#contents" data-fid="rdtoc">' + esc(t('contents')) + '</a>' +
+        '<button type="button" class="pill" data-act="rdzoom" data-fid="rdzoom">' + esc(t(big ? 'zoomOut' : 'zoomIn')) + '</button></div>' +
+        '<div class="rdpg" id="rdpg"><img id="rdimg" src="' + pageUrl(n) + '" alt="' + esc(t('pageAlt', { n: n, total: N })) + '" width="1000" height="1563" draggable="false" decoding="async"></div>' +
+        '<div class="rdfail" id="rdfail" role="alert" hidden><p class="note">' + esc(t('pageFail')) + '</p><button type="button" class="pill" data-act="rdretry">' + esc(t('retry')) + '</button></div>' +
+        pager(n, '#read-', N) +
+        '<form class="rdgo" id="rdgo" novalidate><label class="vh" for="rdn">' + esc(t('goToPage')) + '</label><input id="rdn" class="search" type="number" inputmode="numeric" min="1" max="' + N + '" placeholder="' + esc(t('goToPage')) + ' (1–' + N + ')">' +
+        '<button type="submit" class="pill">' + esc(t('go')) + '</button></form>' +
+        '<p class="note rdprint">' + esc(t('printOff')) + '</p>' +
+      '</div>' };
+  }
+  function vContents() {
+    var last = store.get('bookpage', 1);
+    var rows = BK.toc.map(function (r) {
+      return '<a class="vrow" href="#read-' + r[2] + '"><span class="num rdnum">' + r[2] + '</span><span class="tx"><span class="tt rdtt' + (r[0] > 1 ? ' sub' : '') + '">' + esc(r[1]) + '</span></span></a>';
+    }).join('');
+    var grid = BK.verses.map(function (p, i) {
+      return '<a class="pill" href="#read-' + p + '" aria-label="' + esc(t('jumpVerse') + ' ' + (i + 1)) + '">' + (i + 1) + '</a>';
+    }).join('');
+    return { title: t('contents'), nav: 'book', top: topSub('#read-' + last, t('contents')), html:
+      '<h1 class="ttl" tabindex="-1" style="font-size:2.125rem">' + esc(t('contents')) + '</h1>' +
+      '<div class="list">' + rows + '</div>' +
+      '<section class="card"><div class="lbl">' + esc(t('jumpVerse')) + '</div><div class="vgrid">' + grid + '</div></section>' };
   }
 
   /* ---------- router ---------- */
@@ -231,6 +273,8 @@
       case 'memory': return vMemory();
       case 'language': return vLanguage();
       case 'book': return vBook();
+      case 'read': return vRead(clampP(p.n));
+      case 'contents': return vContents();
       default: return vHome();
     }
   }
@@ -252,6 +296,7 @@
     var target = fid && main.parentNode.querySelector('[data-fid="' + fid + '"]');
     if (target && keep) { target.focus({ preventScroll: true }); }
     else if (!keep) { var h = main.querySelector('h1') || main; h.focus({ preventScroll: true }); }
+    if (cur.after) cur.after();
   }
   window.addEventListener('hashchange', function () { render(false); });
 
@@ -360,6 +405,8 @@
     else if (a === 'zclose') closeZoom();
     else if (a === 'zimg') zoomEl.classList.toggle('big');
     else if (a === 'share') share();
+    else if (a === 'rdzoom') { S.rdBig = !S.rdBig; render(true); }
+    else if (a === 'rdretry') { var im = document.getElementById('rdimg'); if (im && cur && cur.n) { document.getElementById('rdfail').hidden = true; im.src = pageUrl(cur.n) + '?r=' + Date.now(); } }
     else if (a === 'music') toggleMusic();
     else if (a === 'back') { if (history.length > 1) history.back(); else location.hash = '#home'; }
   });
@@ -376,8 +423,8 @@
 
   /* previous / next: arrow keys and swipe */
   function go(dir) {
-    if (!cur || !cur.swipe) return;
-    var n = cur.n + dir; if (n < 1 || n > 48) return;
+    if (!cur || !cur.swipe || document.querySelector('.rd.big')) return;
+    var n = cur.n + dir; if (n < 1 || n > (cur.max || 48)) return;
     location.hash = cur.swipe + n;
   }
   document.addEventListener('keydown', function (e) {
@@ -386,7 +433,13 @@
     if (e.key === 'ArrowRight') go(1); else if (e.key === 'ArrowLeft') go(-1);
   });
   // The pictures (especially the yantras) are protected: stop the easy "save image" menu and dragging. This deters casual copying only.
-  document.addEventListener('contextmenu', function (e) { if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('contextmenu', function (e) { if (e.target && (e.target.tagName === 'IMG' || (e.target.closest && e.target.closest('.rdpg')))) e.preventDefault(); });
+  document.addEventListener('submit', function (e) {
+    if (e.target.id !== 'rdgo') return;
+    e.preventDefault();
+    var v = parseInt(document.getElementById('rdn').value, 10);
+    if (v >= 1 && v <= BK.pages) location.hash = '#read-' + v; else toast(t('goToPage') + ': 1–' + BK.pages);
+  });
   document.addEventListener('dragstart', function (e) { if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
   var tx = 0, ty = 0;
   document.addEventListener('touchstart', function (e) { var p = e.changedTouches[0]; tx = p.clientX; ty = p.clientY; }, { passive: true });

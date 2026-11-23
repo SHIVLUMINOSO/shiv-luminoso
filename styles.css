@@ -172,3 +172,23 @@ img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-use
 
 /* Gujarati: reuse every Hindi rule, with the Gujarati font in place of the Devanagari one */
 .is-gu{--deva:'Noto Serif Gujarati','Noto Serif Devanagari','Cormorant Garamond',serif}
+/* the book, read page by page */
+.rd{display:flex;flex-direction:column;gap:12px}
+.rdbar{display:flex;gap:8px}
+.rdbar .pill{flex:1}
+.rdpg{position:relative;overflow-x:auto;aspect-ratio:1000/1563;border:1px solid var(--red);border-radius:6px;background:rgba(255,247,205,.5);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.rdpg img{display:block;width:100%;height:auto;pointer-events:none;-webkit-user-drag:none}
+.rd.big .rdpg{aspect-ratio:auto}
+.rd.big .rdpg img{width:220%;max-width:none}
+.rdfail{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.rdfail[hidden]{display:none}
+.rdgo{display:flex;gap:8px}
+.rdgo .search{flex:1;min-width:0;-moz-appearance:textfield}
+.rdgo .search::-webkit-outer-spin-button,.rdgo .search::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.vrow .rdnum{width:56px;padding:0;border-radius:19px}
+.rdtt{font-style:normal !important;font-weight:600}
+.rdtt.sub{font-weight:500;padding-left:14px}
+.vgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.vgrid .pill{padding:0;min-height:44px;font-weight:700}
+.rdprint{display:none}
+@media print{.top,.nav,.rdbar,.rdpg,.rdgo,.rd .row,.rdfail{display:none !important}.rdprint{display:block !important;font-size:14pt;color:#000}}
