@@ -1,5 +1,4 @@
 /* Shiv Luminoso - words used by the app screens (not the religious text).
-   English is final. Hindi, Gujarati, Spanish, Portuguese (Brazilian) and Italian are DRAFTS until a native speaker has checked them.
    To add a language: add a block below, add the verse text to data.js, then add the code to LANGS in app.js. */
 window.LUZ_UI = {
   en: {
@@ -29,7 +28,6 @@ window.LUZ_UI = {
     draftTag: 'Draft · awaiting native review',
     chooseLang: 'Choose your language', showSanskrit: 'Show Sanskrit script', showPron: 'Show pronunciation',
     textSize: 'Text size', sizeS: 'Smaller', sizeM: 'Normal', sizeL: 'Larger', done: 'Done', inReview: 'In review',
-    langNote: 'Hindi, Gujarati, Spanish, Portuguese and Italian app words are drafts until a native speaker has checked them.',
     bookTitle: 'Read it, print it, share it', bookLabel: 'THE BOOK', freePdf: 'Free PDF',
     edition: 'First edition · November 2026', download: 'Download the book (PDF)', share: 'Share with someone',
     copied: 'Link copied', copyTitle: 'COPYRIGHT AND SHARING',
@@ -69,7 +67,6 @@ window.LUZ_UI = {
     draftTag: 'प्रारूप · मूल भाषी की जाँच बाकी',
     chooseLang: 'अपनी भाषा चुनें', showSanskrit: 'संस्कृत पाठ दिखाएँ', showPron: 'उच्चारण दिखाएँ',
     textSize: 'अक्षर का आकार', sizeS: 'छोटा', sizeM: 'सामान्य', sizeL: 'बड़ा', done: 'पूर्ण', inReview: 'समीक्षा में',
-    langNote: 'हिन्दी, गुजराती, स्पेनिश, पुर्तगाली और इतालवी के ऐप-शब्द तब तक प्रारूप हैं जब तक कोई मूल भाषी उन्हें जाँच न ले।',
     bookTitle: 'पढ़ें, छापें, बाँटें', bookLabel: 'पुस्तक', freePdf: 'निःशुल्क PDF',
     edition: 'प्रथम संस्करण · नवंबर 2026', download: 'पुस्तक डाउनलोड करें (PDF)', share: 'किसी के साथ साझा करें',
     copied: 'लिंक कॉपी हो गया', copyTitle: 'कॉपीराइट और साझा करना',
@@ -109,7 +106,6 @@ window.LUZ_UI = {
     draftTag: 'Borrador · pendiente de revisión nativa',
     chooseLang: 'Elige tu idioma', showSanskrit: 'Mostrar escritura sánscrita', showPron: 'Mostrar pronunciación',
     textSize: 'Tamaño del texto', sizeS: 'Menor', sizeM: 'Normal', sizeL: 'Mayor', done: 'Listo', inReview: 'En revisión',
-    langNote: 'Las palabras de la app en hindi, guyaratí, español, portugués e italiano son borradores hasta que un hablante nativo las revise.',
     bookTitle: 'Léelo, imprímelo, compártelo', bookLabel: 'EL LIBRO', freePdf: 'PDF gratuito',
     edition: 'Primera edición · noviembre de 2026', download: 'Descargar el libro (PDF)', share: 'Compartir con alguien',
     copied: 'Enlace copiado', copyTitle: 'DERECHOS Y USO',
@@ -149,7 +145,6 @@ window.LUZ_UI = {
     draftTag: 'Rascunho · aguardando revisão de falante nativo',
     chooseLang: 'Escolha seu idioma', showSanskrit: 'Mostrar escrita sânscrita', showPron: 'Mostrar pronúncia',
     textSize: 'Tamanho do texto', sizeS: 'Menor', sizeM: 'Normal', sizeL: 'Maior', done: 'Concluído', inReview: 'Em revisão',
-    langNote: 'As palavras do aplicativo em hindi, guzerate, espanhol, português e italiano são rascunhos até serem revisadas por falantes nativos.',
     bookTitle: 'Leia, imprima, compartilhe', bookLabel: 'O LIVRO', freePdf: 'PDF gratuito',
     edition: 'Primeira edição · novembro de 2026', download: 'Baixar o livro (PDF)', share: 'Compartilhar com alguém',
     copied: 'Link copiado', copyTitle: 'DIREITOS AUTORAIS E COMPARTILHAMENTO',
@@ -189,7 +184,6 @@ window.LUZ_UI = {
     draftTag: 'Bozza · in attesa di revisione di un madrelingua',
     chooseLang: 'Scegli la tua lingua', showSanskrit: 'Mostra la scrittura sanscrita', showPron: 'Mostra la pronuncia',
     textSize: 'Dimensione del testo', sizeS: 'Più piccolo', sizeM: 'Normale', sizeL: 'Più grande', done: 'Fatto', inReview: 'In revisione',
-    langNote: 'Le parole dell’app in hindi, gujarati, spagnolo, portoghese e italiano sono bozze finché un madrelingua non le avrà controllate.',
     bookTitle: 'Leggilo, stampalo, condividilo', bookLabel: 'IL LIBRO', freePdf: 'PDF gratuito',
     edition: 'Prima edizione · novembre 2026', download: 'Scarica il libro (PDF)', share: 'Condividi con qualcuno',
     copied: 'Link copiato', copyTitle: 'DIRITTI D’AUTORE E CONDIVISIONE',
@@ -229,7 +223,6 @@ window.LUZ_UI = {
     draftTag: 'ડ્રાફ્ટ · ગુજરાતી ભાષીની તપાસ બાકી',
     chooseLang: 'તમારી ભાષા પસંદ કરો', showSanskrit: 'સંસ્કૃત શ્લોક બતાવો', showPron: 'ઉચ્ચાર બતાવો',
     textSize: 'અક્ષરનું કદ', sizeS: 'નાનું', sizeM: 'સામાન્ય', sizeL: 'મોટું', done: 'થઈ ગયું', inReview: 'તપાસમાં',
-    langNote: 'હિન્દી, ગુજરાતી, સ્પેનિશ, પોર્ટુગીઝ અને ઇટાલિયન ભાષાના ઍપના શબ્દો કોઈ માતૃભાષી તપાસી ન લે ત્યાં સુધી ડ્રાફ્ટ છે.',
     bookTitle: 'વાંચો, છાપો, વહેંચો', bookLabel: 'પુસ્તક', freePdf: 'મફત PDF',
     edition: 'પ્રથમ આવૃત્તિ · નવેમ્બર 2026', download: 'પુસ્તક ડાઉનલોડ કરો (PDF)', share: 'કોઈની સાથે વહેંચો',
     copied: 'લિંક કૉપિ થઈ', copyTitle: 'કૉપિરાઇટ અને વહેંચણી',

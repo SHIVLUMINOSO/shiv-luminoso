@@ -3,7 +3,7 @@
 (function () {
   'use strict';
   var D = window.LUZ_DATA, UI = window.LUZ_UI;
-  var LANGS = ['en', 'hi', 'gu', 'es', 'pt', 'it'];     // live languages (Hindi, Gujarati, Spanish, Portuguese and Italian are drafts until a native speaker has checked them)
+  var LANGS = ['en', 'hi', 'gu', 'es', 'pt', 'it'];     // live languages
   var SOON = [{ code: 'ta', name: 'தமிழ்', eng: 'Tamil' }];
   var IMG = window.LUZ_IMG_BASE || D.imgBase || '';   // folder (or web address) that holds img/, thumb/, nani.jpg, cover.jpg
   var U = function (p) { var m = window.LUZ_IMAGES; return (m && m[p]) || (IMG + p); };   // the single-file build embeds the pictures in window.LUZ_IMAGES
@@ -206,7 +206,6 @@
       '<div class="card" style="padding:6px 16px"><label class="sw" for="sw-sa">' + esc(t('showSanskrit')) + '<input id="sw-sa" type="checkbox" data-act="sa" data-fid="sw-sa"' + (S.sa ? ' checked' : '') + '></label>' +
       '<label class="sw" for="sw-pr">' + esc(t('showPron')) + '<input id="sw-pr" type="checkbox" data-act="pron2" data-fid="sw-pr"' + (S.pron ? ' checked' : '') + '></label></div>' +
       '<div class="card"><div class="lbl">' + esc(t('textSize')) + '</div><div class="tabs" role="group" aria-label="' + esc(t('textSize')) + '">' + sizes + '</div></div>' +
-      '<p class="note">' + esc(t('langNote')) + '</p>' +
       '<button type="button" class="btn" data-act="back">' + esc(t('done')) + '</button>' };
   }
 
