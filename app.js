@@ -184,7 +184,7 @@
       '<div class="memtop"><img class="mp" src="' + U('nani.jpg') + '" alt="' + esc(M.name) + '" width="172" height="268"><h1 tabindex="-1">' + esc(M.name) + '</h1>' +
       '<div class="dates" lang="' + L + '">' + esc(d.role) + ' · ' + esc(M.dates[L]) + '</div>' +
       '<div class="big" lang="' + L + '">' + esc(d.line) + '</div><div class="big" lang="' + L + '">' + esc(d.line2) + '</div>' + (d.line3 ? '<div class="big" lang="' + L + '">' + esc(d.line3) + '</div>' : '') +
-      (d.draft ? '<span class="tag">' + esc(t('draftTag')) + '</span>' : '') + '</div>' +
+      '</div>' +
       '<section class="card story"><div class="lbl">' + esc(t('storyLabel')) + '</div><h2 class="ttl" lang="' + L + '">' + esc(st[0]) + '</h2>' +
       st.slice(1).map(function (p) { return '<p class="body" lang="' + L + '">' + esc(p) + '</p>'; }).join('') + '</section>' +
       '<p class="note center">' + esc(t('withLove')) + '</p>' };
